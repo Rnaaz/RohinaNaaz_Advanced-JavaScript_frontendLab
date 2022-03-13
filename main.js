@@ -19,7 +19,9 @@ fetch(`${api.base}weather?q=${val}&units=metric&appid=${api.key}`)
 .then(weather => weather.json()
 )
 .then(response =>{
+    errorMsg.textContent = "";
     displayResults(response);
+
 })
 .catch(() => {
     errorMsg.textContent = "Please search for a valid city 😩";
