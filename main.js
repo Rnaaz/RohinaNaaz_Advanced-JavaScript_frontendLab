@@ -4,6 +4,7 @@ const api = {
   }
   
 const searchBox = document.querySelector('.search-box');
+const errorMsg = document.querySelector('.error-msg');
 
 searchBox.addEventListener('keypress',setQuery);
 
@@ -14,16 +15,17 @@ function setQuery(event){
 }
 
 function getResults(val){
-console.log(val);
 fetch(`${api.base}weather?q=${val}&units=metric&appid=${api.key}`)
-.then(weather =>{
-    return weather.json()
-})
+.then(weather => weather.json()
+)
 .then(response =>{
-    console.log(response);
     displayResults(response);
-});
+})
+.catch(() => {
+    errorMsg.textContent = "Please search for a valid city 😩";
+  });
 
+  searchBox.value = '';
 }
 
 function displayResults(res){
@@ -36,7 +38,7 @@ function displayResults(res){
 
     let temp = document.querySelector('.current .temp');
    
-    temp.innerHTML = `${Math.round(res.main.temp)} <span>°c</span>`;
+    temp.innerHTML = `${Math.round(res.main.temp)}<span>°c</span>`;
 
     let weather = document.querySelector('.current .weather');
     weather.innerText = res.weather[0].main;

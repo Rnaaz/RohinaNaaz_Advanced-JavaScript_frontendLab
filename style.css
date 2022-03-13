@@ -19,10 +19,21 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  text-align: center;
+  /* justify-content: center;
+  align-items: center; */
   padding: 50px 15px 15px;
+}
+header h1{
+  color:#fff;
+  padding-bottom: 50px;
+  font-size:42px;
+}
+
+.error-msg{
+  color:#FFF;
+  padding-top:15px;
 }
 
 header input {
